@@ -1,4 +1,4 @@
-# Dynamical Systems Reconstruction using MVAE-TF
+# Dynamical Systems Reconstruction using Multimodal Teacher Forcing (MTF)
 
 ## Setup
 Install your anaconda distribution of choice, e.g. miniconda via the bash
