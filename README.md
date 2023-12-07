@@ -29,7 +29,6 @@ At the bottom of the ubermain file, you can select the number of runs for each e
 
 With the default settings, a dendPLRNN is trained with MTF on multimodal data from the chaotic Lorenz-63 system. Results and example visualizations can be accessed by running tensorboard in the respective logdir. An example evaluation for a Lorenz system trained on Gaussian, ordinal and count data, which was used in Figure 2a) in the paper can be found in the Jupyter Notebook "Example Evaluation Lorenz".In this notebook you can sample trajectories from the trained system and compute evaluation metrics such as the maximum Lyapunov exponent and state space agreement.
 
-
 ## Model Structure
 
 The SAE folder contains all model architectures relating to the encoder/decoder part of the model. The different encoder architectures (CNN, RNN, Transformer etc.) are in the encoder.py foloder, while the decoder/observation models (Gaussian, ordinal, Poisson, ZIP, Negative Binomial, and categorical) are in the decoder.py file.
@@ -37,6 +36,8 @@ The SAE folder contains all model architectures relating to the encoder/decoder 
 The bptt folder contains all files relating to MTF training. Most importantly, the RNN_model.py file defines the model architecture of the DSR model, the bptt_algorithm.py file defines the loss function and training algorithm and the models.py file defines the overall model architecture (encoder/decoder and DSR model).
 Data loading is via the dataset_multimodal.py file, with data paths and dataset parameters defined in the load_dataset_multimodal function in utils.py.
 
+## Hyerparameters
+The most important hyperparameters for successful reconstructions are the sparse teacher forcing interval, defined as "n_interleave" in the main.py file.
 
 ## Evaluation
 Evaluating trained models efficiently can be done by calling ```main_eval.py```,
