@@ -70,7 +70,6 @@ def get_parser():
     parser.add_argument('--kernel_width_preprocessing', type=int, default=10)
     parser.add_argument('--T_max', type=int, default=10000)
     
-
     #autoencoder
     parser.add_argument('--enc_model', '-em', type=str,choices=['CNN','MLP','Linear', 'Identity', "POG"], default='CNN')
     parser.add_argument('--dec_model_gaussian', '-dmg', type=str, choices=['Identity', 'MLP', 'Linear', 'categorical'], default='Linear')
@@ -101,26 +100,25 @@ def get_parser():
     parser.add_argument('--resume_epoch', type=int, default=None)
 
     # model
-    parser.add_argument('--fix_obs_model', '-fo',
-        type=int,
-        help="Fix B to be of shape used for Id. TF.",
-        default=1
-    )
     parser.add_argument('--dim_z',
         type=int,
         help="Dimension M of latent state vector of the model", 
-        default=15
+        default=20
     )
     parser.add_argument('--n_bases', '-nb',
         type=int,
         help="Number of bases to use in dendr-PLRNN and clipped-PLRNN latent models.",
         default=5
     )
-
     parser.add_argument('--dim_forcing',
         type=int,
         help="Dimension K of encoder model/teacher forced states", 
-        default=5
+        default=15
+    )
+    parser.add_argument('--n_interleave', '-ni',
+        type=int,
+        help="Teacher forcing interval (tau).",
+        default=15
     )
     parser.add_argument('--clip_range', '-clip',
         type=float,
@@ -164,13 +162,6 @@ def get_parser():
              "using Autocorrelation & Mutual Information.",
         default=0
     )
-    
-    # Sparse teacher forcing interval tau
-    parser.add_argument('--n_interleave', '-ni',
-        type=int,
-        help="Teacher forcing interval (tau).",
-        default=15
-    )
     parser.add_argument('--batch_size', '-bs',
         type=int,
         help="Sequences are gathered as batches of this size (computed in parallel).",
@@ -184,7 +175,7 @@ def get_parser():
     parser.add_argument('--seq_len', '-sl',
         type=int,
         help="Sequence length sampled from the total pool of the data.",
-        default=200
+        default=300
     )
     parser.add_argument('--save_step', '-ss',
         type=int,
@@ -196,7 +187,11 @@ def get_parser():
         help="Interval of saving images to TB and model parameters to storage.",
         default=2
     )
-
+    parser.add_argument('--fix_obs_model', '-fo',
+        type=int,
+        help="Fix B to be of shape used for Id. TF.",
+        default=1
+    )
     # optimization
     parser.add_argument('--learning_rate', '-lr',
         type=float,
