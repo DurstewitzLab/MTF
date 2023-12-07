@@ -36,9 +36,6 @@ The SAE folder contains all model architectures relating to the encoder/decoder 
 The bptt folder contains all files relating to MTF training. Most importantly, the RNN_model.py file defines the model architecture of the DSR model, the bptt_algorithm.py file defines the loss function and training algorithm and the models.py file defines the overall model architecture (encoder/decoder and DSR model).
 Data loading is via the dataset_multimodal.py file, with data paths and dataset parameters defined in the load_dataset_multimodal function in utils.py.
 
-## Hyerparameters
-The most important hyperparameters for successful reconstructions are the sparse teacher forcing interval, defined as "n_interleave" in the main.py file.
-
 ## Evaluation
 Evaluating trained models efficiently can be done by calling ```main_eval.py```,
 where the save paths and input data are defined at the bottom of the file, and selected evaluation metrics are output as csv files.
